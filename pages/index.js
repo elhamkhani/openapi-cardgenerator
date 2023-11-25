@@ -26,7 +26,7 @@ export default function Home() {
       }
 
       setMessage(data.message.content);
-      setImage(data.image_data.data[0].url);
+      //setImage(data.image_data.data[0].url);
       // setCategoryInput("");
       // setThemeInput("");
       // setFavouriteInput("");
