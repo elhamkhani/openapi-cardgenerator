@@ -71,10 +71,10 @@ export default function Home() {
           />
           <input type="submit" value="Generate" />
         </form>
-        <div className={styles.result}>
+        {message &&<div className={styles.result}>
           <div className={styles.text}>{message}</div>
           <img className={styles.image} src={image}/>
-        </div>
+        </div>}
       </main>
     </div>
   );

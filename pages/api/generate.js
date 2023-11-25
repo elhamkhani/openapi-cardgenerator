@@ -1,6 +1,8 @@
-import { OpenAI } from "openai";
+import OpenAI from "openai";
 
-const openai = new OpenAI();
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+});
 
 export default async function (req, res) {
   const category = req.body.category || '';
@@ -68,3 +70,4 @@ function generatePrompt(category, theme) {
     theme[0].toUpperCase() + theme.slice(1).toLowerCase();
   return `Write a short ${capitalizedTheme} ${capitalizedCategory} message`;
 }
+
