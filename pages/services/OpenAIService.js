@@ -4,19 +4,20 @@ import GPT3Model from "./models/GPT3Model";
 
 class OpenAIService {
     constructor(apiKey) {
-      this.openai = new OpenAI({
+      const openai = new OpenAI({
         apiKey: apiKey,
       });
+
+      this.textAiModel = new GPT3Model(openai);
+      this.dallEModel = new DALL_EModel(openai);
     }
-  
+
     async generateImage(theme, category, favourite) {
-      const dallEModel = new DALL_EModel(this.openai);
-        return dallEModel.generateImageCompletion(theme, category, favourite);
+        return this.dallEModel.generateImageCompletion(theme, category, favourite);
     }
   
     async generateGreeting(category, theme) {
-      const textAiModel = new GPT3Model(this.openai);
-      return textAiModel.getTextCompletion(category, theme);
+      return this.textAiModel.getTextCompletion(category, theme);
     }
   }
 

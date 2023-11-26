@@ -1,11 +1,6 @@
 import TextAIModel from "./TextAIModel";
 
 class GPT3Model extends TextAIModel {
-  constructor(openai) {
-    super();
-   this.openai = openai;
-  }
-
   async getTextCompletion(category, theme) {
     const completion = await this.openai.chat.completions.create({
       model: "gpt-3.5-turbo",

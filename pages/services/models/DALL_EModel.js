@@ -1,10 +1,7 @@
 import ImageAIModel from "./ImageAIModel";
 
 class DALL_EModel extends ImageAIModel {
-  constructor(openai) {
-    super();
-   this.openai = openai;
-  }
+  
   async generateImageCompletion(theme, category, favourite) {
     const image_data = await this.openai.images.generate({
       model: "dall-e-3",
