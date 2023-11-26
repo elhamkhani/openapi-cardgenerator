@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Loading from "./components/loading";
 import { useState } from "react";
 import styles from "./index.module.css";
 
@@ -6,12 +7,14 @@ export default function Home() {
   const [categoryInput, setCategoryInput] = useState("");
   const [themeInput, setThemeInput] = useState("");
   const [favouriteInput, setFavouriteInput] = useState("");
-  const [message, setMessage] = useState();
-  const [image, setImage] = useState();
+  const [message, setMessage] = useState("");
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function onSubmit(event) {
     event.preventDefault();
     try {
+      setLoading(true);
       const response = await fetch("/api/generate", {
         method: "POST",
         headers: {
@@ -24,7 +27,7 @@ export default function Home() {
       if (response.status !== 200) {
         throw data.error || new Error(`Request failed with status ${response.status}`);
       }
-
+      setLoading(false);
       setMessage(data.message.content);
       setImage(data.image_data.data[0].url);
     } catch(error) {
@@ -67,6 +70,7 @@ export default function Home() {
           />
           <input type="submit" value="Generate" />
         </form>
+        {loading && <Loading/>}
         {message &&<div className={styles.result}>
           <div className={styles.text}>{message}</div>
           <img className={styles.image} src={image}/>
