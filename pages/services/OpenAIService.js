@@ -1,6 +1,6 @@
 import OpenAI from "openai";
-import DALL_EModel from "./models/DALL_EModel";
-import GPT3Model from "./models/GPT3Model";
+import ImageModel from "./models/DALL_E2Model";
+import TextModel from "./models/GPT3Model";
 
 class OpenAIService {
     constructor(apiKey) {
@@ -8,12 +8,12 @@ class OpenAIService {
         apiKey: apiKey,
       });
 
-      this.textAiModel = new GPT3Model(openai);
-      this.dallEModel = new DALL_EModel(openai);
+      this.textAiModel = new TextModel(openai);
+      this.imageAiModel = new ImageModel(openai);
     }
 
     async generateImage(theme, category, favourite) {
-        return this.dallEModel.generateImageCompletion(theme, category, favourite);
+        return this.imageAiModel.generateImageCompletion(theme, category, favourite);
     }
   
     async generateGreeting(category, theme) {
