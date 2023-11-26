@@ -35,17 +35,17 @@ export default async function (req, res) {
 
     const message = completion.choices[0].message;
 
-    // const image_data = await openai.images.generate({
-    //   model: "dall-e-3",
-    //   prompt: `white background ${theme} ${category} ${favourite}`,
-    //   n: 1,
-    //   size: "1024x1024",
-    // });
+    const image_data = await openai.images.generate({
+      model: "dall-e-3",
+      prompt: `white background ${theme} ${category} ${favourite}`,
+      n: 1,
+      size: "1024x1024",
+    });
     
 
     res.status(200).json({ 
       message,
-     // image_data
+      image_data
      });
   } catch(error) {
     // Consider adjusting the error handling logic for your use case
@@ -68,6 +68,6 @@ function generatePrompt(category, theme) {
     category[0].toUpperCase() + category.slice(1).toLowerCase();
     const capitalizedTheme =
     theme[0].toUpperCase() + theme.slice(1).toLowerCase();
-  return `Write a short ${capitalizedTheme} ${capitalizedCategory} message`;
+  return `Write a short ${capitalizedTheme} ${capitalizedCategory} message less than 200 characters long.`;
 }
 
