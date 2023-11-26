@@ -27,11 +27,7 @@ export default function Home() {
 
       setMessage(data.message.content);
       setImage(data.image_data.data[0].url);
-      // setCategoryInput("");
-      // setThemeInput("");
-      // setFavouriteInput("");
     } catch(error) {
-      // Consider implementing your own error handling logic here
       alert(error.message);
     }
   }
