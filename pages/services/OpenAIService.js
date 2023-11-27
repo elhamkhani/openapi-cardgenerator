@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import ImageModel from "./models/DALL_E3Model";
+import ImageModel from "./models/DALL_E2Model";
 import TextModel from "./models/GPT3Model";
 
 class OpenAIService {
